@@ -1,0 +1,27 @@
+<app-show-errors [errors]="errors"></app-show-errors>
+
+<form (ngSubmit)="submitForm()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Serial Number</mat-label>
+        <input formControlName="serialNumber" matInput />
+        <mat-error *ngIf="form.invalid">{{GetFieldError('serialNumber')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput />
+        <mat-error *ngIf="form.invalid">{{GetFieldError('name')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>IPv4 Adress</mat-label>
+        <input formControlName="ipAdress" matInput />
+        <mat-error *ngIf="form.invalid">{{GetFieldError('ipAdress')}}</mat-error>
+    </mat-form-field>
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">
+            Save
+        </button> 
+    <a mat-stroked-button routerLink="/gateway">
+        Cancel
+    </a>
+    </div>
+</form>
