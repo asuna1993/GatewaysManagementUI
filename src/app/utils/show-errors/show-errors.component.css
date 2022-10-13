@@ -1,0 +1,26 @@
+mat-card-content{
+    color: red;
+}
+
+mat-card{
+    margin: 1rem;    
+}
+
+ul{
+    color: red;
+}
+
+.error-bag{
+    margin: 1rem;  
+    padding: 0.5rem;
+    padding-left: 1rem;
+    background-color: #c90a0a1c;
+    border: solid;
+    border-color: red;
+    border-width: thin;
+}
+.error-message{
+    color: red;
+    display: block;
+    font-size: 14px;
+}
