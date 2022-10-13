@@ -1,0 +1,18 @@
+<h1>Device Details</h1>
+<div class="card">
+    <div class="row">
+        <span class="label">UID: </span><span class="value">{{device.uid}}</span>
+    </div>
+    <div class="row">
+        <span class="label">Vendor: </span><span class="value">{{device.vendor}}</span>
+    </div>
+    <div class="row">
+        <span class="label">Created At: </span><span class="value">{{ device.createdAt | date }}</span>
+    </div>
+    <div class="row">
+        <span class="label">Status: </span><span class="value">{{device.status}}</span>
+    </div>
+    <div class="row">
+        <span class="label">Gateway: </span><span class="value">{{device.gateway}}</span>
+    </div>
+</div>

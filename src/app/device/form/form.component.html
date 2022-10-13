@@ -1,0 +1,30 @@
+<app-show-errors [errors]="errors"></app-show-errors>
+
+<form (ngSubmit)="submitForm()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>UID</mat-label>
+        <input formControlName="uid" matInput />
+        <mat-error *ngIf="form.invalid">{{GetFieldError('uid')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Vendor</mat-label>
+        <input formControlName="vendor" matInput />
+        <mat-error *ngIf="form.invalid">{{GetFieldError('vendor')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="statusId" matInput>
+            <mat-option [value]="0">OFFLINE</mat-option>
+            <mat-option [value]="1">ONLINE</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.invalid">{{GetFieldError('statusId')}}</mat-error>
+    </mat-form-field>
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">
+            Save
+        </button> 
+    <a mat-stroked-button routerLink="/device/list/{{gatewayId}}">
+        Cancel
+    </a>
+    </div>
+</form>

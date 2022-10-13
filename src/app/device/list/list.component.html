@@ -1,0 +1,76 @@
+<h1>Devices</h1>
+<div>
+  <mat-form-field appearance="outline">
+    <mat-label>Gateway</mat-label>
+    <mat-select (selectionChange)="changeGateway($event)" [value]="gatewayId" [required]>
+      <mat-option *ngFor="let element of gatewaysList" [value]="element.id">{{element.name}}</mat-option>
+    </mat-select>
+</mat-form-field>
+</div>
+<button id="new_device_button" mat-flat-button color="primary" type="button" routerLink="/device/create/{{gatewayId}}" [disabled]="devices.length == 10">New device</button>
+<div class="empty-container" *ngIf="devices.length == 0">
+    There are no Devices to display
+</div>
+<mat-spinner *ngIf="!devices"></mat-spinner>
+
+<ng-container *ngIf="devices.length > 0">   
+        <table mat-table [dataSource]="devices" class="mat-elevation-z8 full-table">          
+            <!-- UID Column -->
+            <ng-container matColumnDef="uid">
+              <th mat-header-cell *matHeaderCellDef> UID </th>
+              <td mat-cell *matCellDef="let device"> {{device.uid}} </td>
+            </ng-container>
+          
+            <!-- Vendor Column -->
+            <ng-container matColumnDef="vendor">
+              <th mat-header-cell *matHeaderCellDef> Vendor </th>
+              <td mat-cell *matCellDef="let device"> {{device.vendor}} </td>
+            </ng-container>
+          
+            <!-- Created At Column -->
+            <ng-container matColumnDef="createdAt">
+              <th mat-header-cell *matHeaderCellDef> Created At </th>
+              <td mat-cell *matCellDef="let device"> {{ device.createdAt | date }} </td>
+            </ng-container>
+          
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let device" [ngClass]="{'online': device.status === 'ONLINE', 'offline': device.status === 'OFFLINE'}"> 
+                {{device.status}}
+              </td>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef> Action </th>
+              <td mat-cell *matCellDef="let device">                 
+                <button type="button" mat-icon-button color="primary" routerLink="/device/{{device.id}}">
+                  <mat-icon aria-hidden="false" aria-label="View" fontIcon="preview"></mat-icon>
+                </button>
+                <button type="button" mat-icon-button color="primary" routerLink="/device/update/{{gatewayId}}/{{device.id}}">
+                    <mat-icon aria-hidden="false" aria-label="Update" fontIcon="edit"></mat-icon>
+                  </button>
+                <button type="button" mat-icon-button color="warn" 
+                [swal]="{title: 'Are you sure?', 
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning', 
+                showCancelButton: true, 
+                confirmButtonText: 'Yes, delete it!', 
+                confirmButtonColor: '#d33'}"
+                (confirm)="delete(device.id)">
+                    <mat-icon aria-hidden="false" aria-label="Delete" fontIcon="delete"></mat-icon>
+                </button>
+            </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>    
+        <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]"  showFirstLastButtons
+        [length]="pagination.totalCount" [pageSize]="pagination.pageSize"
+        (page)="refreshPagination($event)"
+        >
+
+        </mat-paginator>
+</ng-container>
