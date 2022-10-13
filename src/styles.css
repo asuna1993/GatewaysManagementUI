@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container{
+    margin: 2rem;
+}
+
+button{
+    margin: 1rem;
+}
+
+.full-table{
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.empty-container{
+    width: 100%;
+    max-width: 500px;
+    margin: 1rem;
+}
+
+mat-toolbar{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.card{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    opacity: 1;
+    padding: 2rem;
+}
+.row{
+    margin: 2rem;
+}
+
+.label{
+    font-weight: bold;
+}
+
+.value{
+    margin-left: 8px;
+}
