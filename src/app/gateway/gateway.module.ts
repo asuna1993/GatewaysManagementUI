@@ -1,29 +1,38 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from '../app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../shared/material/material.module';
+import { SharedModule } from '../shared/shared.module';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { GatewayRoutingModule } from './gateway-routing.module';
-import { GetComponent } from './get/get.component';
-import { ListComponent } from './list/list.component';
-import { CreateComponent } from './create/create.component';
-import { UpdateComponent } from './update/update.component';
-import { FormComponent } from './form/form.component';
+import { GatewayGetComponent } from './get/gateway-get.component';
+import { GatewayListComponent } from './list/gateway-list.component';
+import { GatewayCreateComponent } from './create/gateway-create.component';
+import { GatewayUpdateComponent } from './update/gateway-update.component';
+import { GatewayFormComponent } from './form/gateway-form.component';
 
 
 @NgModule({
   declarations: [
-    GetComponent,
-    ListComponent,
-    CreateComponent,
-    UpdateComponent,
-    FormComponent
+    GatewayGetComponent,
+    GatewayListComponent,
+    GatewayCreateComponent,
+    GatewayUpdateComponent,
+    GatewayFormComponent,
   ],
   imports: [
     CommonModule,
     GatewayRoutingModule, 
     HttpClientModule,
-    FormsModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SweetAlert2Module,
+    MaterialModule,
+    SharedModule,
   ]
 })
 export class GatewayModule { }

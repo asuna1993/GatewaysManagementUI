@@ -1,15 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GatewayListComponent } from './gateway/list/gateway-list.component';
+import { GatewayCreateComponent } from './gateway/create/gateway-create.component';
+import { GatewayUpdateComponent } from './gateway/update/gateway-update.component';
+import { GatewayGetComponent } from './gateway/get/gateway-get.component';
 
-import { CreateComponent as GatewayCreateComponent } from './gateway/create/create.component';
-import { ListComponent as GatewayListComponent } from './gateway/list/list.component';
-import { UpdateComponent as GatewayUpdateComponent } from './gateway/update/update.component';
-import { GetComponent as GatewayGetComponent } from './gateway/get/get.component';
-
-import { ListComponent as DeviceListComponent } from './device/list/list.component';
-import { CreateComponent as DeviceCreateComponent } from './device/create/create.component';
-import { UpdateComponent as DeviceUpdateComponent } from './device/update/update.component';
-import { GetComponent as DeviceGetComponent } from './device/get/get.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'gateway/list', pathMatch: 'full'},
@@ -19,10 +14,11 @@ const routes: Routes = [
   { path: 'gateway/update/:gatewayId', component: GatewayUpdateComponent },
   { path: 'gateway/:gatewayId', component: GatewayGetComponent },
   
-  { path: 'device/list/:gatewayId', component: DeviceListComponent },
-  { path: 'device/create/:gatewayId', component: DeviceCreateComponent },
-  { path: 'device/update/:gatewayId/:deviceId', component: DeviceUpdateComponent },
-  { path: 'device/:deviceId', component: DeviceGetComponent },
+  { path: 'device', loadChildren: () => import('./device/device.module').then(m => m.DeviceModule) }
+  /*{ path: 'device/list/:gatewayId', loadComponent: () => import('./device/list/device-list.component').then(m => m.DeviceListComponent) },
+  { path: 'device/create/:gatewayId', loadComponent: () => import('./device/create/device-create.component').then(m => m.DeviceCreateComponent) },
+  { path: 'device/update/:gatewayId/:deviceId', loadComponent: () => import('./device/update/device-update.component').then(m => m.DeviceUpdateComponent) },
+  { path: 'device/:deviceId', loadComponent: () => import('./device/get/device-get.component').then(m => m.DeviceGetComponent) },*/
 ];
 
 @NgModule({
