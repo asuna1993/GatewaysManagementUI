@@ -14,3 +14,8 @@ export interface DeviceDTO {
     vendor: string;
     statusId: number;
 }
+
+export enum DeviceStatus {
+  OFFLINE = 0,
+  ONLINE = 1
+}

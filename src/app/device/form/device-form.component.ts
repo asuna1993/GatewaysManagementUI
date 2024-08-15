@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { DeviceDTO } from '../device';
+import { DeviceDTO, DeviceStatus } from '../device';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -26,6 +26,12 @@ export class DeviceFormComponent implements OnInit, OnDestroy {
 
   @Output()
   onSubmit: EventEmitter<DeviceDTO> = new EventEmitter<DeviceDTO>();
+
+  statusOptions = [
+  { value: DeviceStatus.OFFLINE, label: 'OFFLINE' },
+  { value: DeviceStatus.ONLINE, label: 'ONLINE' }
+];
+
 
   ngOnInit(): void {
     this.routeSubscription = this.activatedRoute.params.subscribe(params => {

@@ -4,20 +4,21 @@
     <mat-form-field appearance="outline">
         <mat-label>UID</mat-label>
         <input formControlName="uid" matInput />
-        <mat-error *ngIf="form.invalid">{{GetFieldError('uid')}}</mat-error>
+        <mat-error *ngIf="form.get('uid')?.invalid">{{GetFieldError('uid')}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Vendor</mat-label>
         <input formControlName="vendor" matInput />
-        <mat-error *ngIf="form.invalid">{{GetFieldError('vendor')}}</mat-error>
+        <mat-error *ngIf="form.get('vendor')?.invalid">{{GetFieldError('vendor')}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Status</mat-label>
         <mat-select formControlName="statusId" matInput>
-            <mat-option [value]="0">OFFLINE</mat-option>
-            <mat-option [value]="1">ONLINE</mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.invalid">{{GetFieldError('statusId')}}</mat-error>
+            <mat-option *ngFor="let status of statusOptions" [value]="status.value">
+              {{status.label}}
+            </mat-option>
+          </mat-select>
+        <mat-error *ngIf="form.get('statusId')?.invalid">{{GetFieldError('statusId')}}</mat-error>
     </mat-form-field>
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">
